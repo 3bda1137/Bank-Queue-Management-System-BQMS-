@@ -1,4 +1,4 @@
-##Bank Queue Management System (BQMS) 
+## Bank Queue Management System (BQMS) 
 - C++ Console Application
 Project Overview
 Welcome to the Bank Queue Management System (BQMS) – a console-based application developed in C++. The primary objective of this project is to create an efficient system for managing customer queues in a bank. The system intelligently assigns customers to available tellers, thereby minimizing wait times and ensuring optimal service.
