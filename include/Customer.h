@@ -57,6 +57,7 @@ public:
         return this->customerNumber;
     }
 
+
 };
 
 #endif // CUSTOMER_H

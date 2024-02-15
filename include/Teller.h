@@ -55,9 +55,16 @@ public:
     //return the Transaction Time of Current Customer
     int GetCurrentCustomerTransactionTime()
     {
-        return this->transactionTime;
+        return this->currentCustomer.GetTransactionTime();
     }
+    int GetRemainingTransactionTime()
+    {
+        return GetCurrentCustomerTransactionTime()-transactionTime;
+    }
+    int GetCurrentCustomerWaitingTime()
+    {
 
+    }
 private:
     Customer currentCustomer;
     string status;
