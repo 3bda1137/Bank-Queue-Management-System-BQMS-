@@ -5,7 +5,7 @@ using namespace std;
 class Teller
 {
 public:
-        //constructor
+    //constructor
     Teller()
     {
         status = "free";
@@ -27,17 +27,18 @@ public:
         this->status="free";
     }
     // set transaction Time
-    void SetTransactionTime()
+    void SetTransactionTime(int transactionTime)
     {
-        this->transactionTime = currentCustomer.getTransactionTime();
+        this->transactionTime = transactionTime;//currentCustomer.GetTransactionTime();
     }
+    //Decrease Transaction Time of customer
     void DecreaseTransactionTime()
     {
         if (transactionTime > 0)
             this->transactionTime--;
     }
-
-    void SetCurrentCustomer(const customerType& customer)
+    //assign customer to teller
+    void SetCurrentCustomer(const Customer& customer)
     {
         currentCustomer = customer;
     }
@@ -51,11 +52,11 @@ public:
     {
         return currentCustomer.GetArrivalTime();
     }
-
-     int GetCurrentCustomerTransactionTime()
-     {
-         return this->transactionTime;
-     }
+    //return the Transaction Time of Current Customer
+    int GetCurrentCustomerTransactionTime()
+    {
+        return this->transactionTime;
+    }
 
 private:
     Customer currentCustomer;
