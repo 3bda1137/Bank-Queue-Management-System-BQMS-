@@ -11,6 +11,7 @@ private:
     int transactionTime;
 public:
     //constructor
+    Customer(){}
     Customer(int customerNumber, int arrivalTime,int waitingTime, int transactionTime)
     {
         InitializeCustomer(customerNumber, arrivalTime, waitingTime, transactionTime);
