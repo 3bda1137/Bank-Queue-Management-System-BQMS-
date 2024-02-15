@@ -2,14 +2,54 @@
 #define CLIENT_H
 
 
-class Client
+class Customer
 {
-    public:
-        Client() {}
+public:
+    enum CustomerType { REGULAR, PRIORITY };
 
-    protected:
+private:
+    int id;
+    int arrivalTime;
+    int serviceTime;
+    int completionTime;
+    CustomerType type;
 
-    private:
+public:
+    Customer(int _id, int _arrivalTime, CustomerType _type = REGULAR)
+        : id(_id), arrivalTime(_arrivalTime), serviceTime(rand() % 10 + 1), type(_type), completionTime(-1) {}
+
+    int getID() const
+    {
+        return id;
+    }
+    int getArrivalTime() const
+    {
+        return arrivalTime;
+    }
+    int getServiceTime() const
+    {
+        return serviceTime;
+    }
+    int getCompletionTime() const
+    {
+        return completionTime;
+    }
+    CustomerType getType() const
+    {
+        return type;
+    }
+
+    void setCompletionTime(int time)
+    {
+        completionTime = time;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Customer& customer)
+    {
+        os << "Customer " << customer.id << " (Type: " << (customer.type == REGULAR ? "Regular" : "Priority")
+           << ", Arrival: " << customer.arrivalTime << ", Service: " << customer.serviceTime
+           << ", Completion: " << (customer.completionTime == -1 ? "Not Completed" : std::to_string(customer.completionTime)) << ")";
+        return os;
+    }
 };
-
 #endif // CLIENT_H
