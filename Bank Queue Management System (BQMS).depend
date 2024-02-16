@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1708000901 source:e:\iti_intake_44\16-datastructuer\project\bank queue management system (bqms)\main.cpp
+1708066169 source:e:\iti_intake_44\16-datastructuer\project\bank queue management system (bqms)\main.cpp
 	<iostream>
 	<string>
 	"Customer.h"
 	"Teller.h"
 	"TellerList.h"
+	"WaitingCustomerQueue.h"
 
 1708004718 e:\iti_intake_44\16-datastructuer\project\bank queue management system (bqms)\include\customer.h
 
@@ -13,4 +14,9 @@
 
 1708005387 e:\iti_intake_44\16-datastructuer\project\bank queue management system (bqms)\include\tellerlist.h
 	<queue>
+
+1708066490 e:\iti_intake_44\16-datastructuer\project\bank queue management system (bqms)\include\waitingcustomerqueue.h
+	"MyQueue.h"
+
+1708066462 e:\iti_intake_44\16-datastructuer\project\bank queue management system (bqms)\include\myqueue.h
 
