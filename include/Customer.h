@@ -32,7 +32,7 @@ public:
     }
 
     // return  the value ofwaitingTime of customer
-    IncrementWaitingTime()
+    void IncrementWaitingTime()
     {
         waitingTime++;
     }
@@ -56,8 +56,6 @@ public:
     {
         return this->customerNumber;
     }
-
-
 };
 
 #endif // CUSTOMER_H

@@ -1,74 +1,78 @@
+// Teller.h
 #ifndef TELLER_H
 #define TELLER_H
-#include <string>
-using namespace std;
+
+#include "Customer.h"
+
 class Teller
 {
 public:
-    //constructor
-    Teller()
+    Teller() : isFree(true), transactionTime(0), currentCustomer(nullptr) {}
+
+    bool IsFree() const
     {
-        status = "free";
-        transactionTime = 0;
+        return isFree;
     }
-    //Check if Teller is free or not
-    bool IsFree()
-    {
-        return this->status=="free";
-    }
-    // make the teller 'busy'
+
     void SetBusy()
     {
-        this->status="busy";
+        isFree = false;
     }
-    // make the teller 'free'
+
     void SetFree()
     {
-        this->status="free";
+        isFree = true;
+        transactionTime = 0;
+        currentCustomer = nullptr;
     }
-    // set transaction Time
-    void SetTransactionTime(int transactionTime)
+
+    void SetTransactionTime(int time)
     {
-        this->transactionTime = transactionTime;//currentCustomer.GetTransactionTime();
+        transactionTime = time;
     }
-    //Decrease Transaction Time of customer
+
+    void SetCurrentCustomer(Customer& customer)
+    {
+        currentCustomer = &customer;
+    }
+
+    int GetRemainingTransactionTime() const
+    {
+        return transactionTime;
+    }
+
+    int GetCurrentCustomerNumber() const
+    {
+        return (currentCustomer != nullptr) ? currentCustomer->GetCustomerNumber() : -1;
+    }
+
+    int GetCurrentCustomerArrivalTime() const
+    {
+        return (currentCustomer != nullptr) ? currentCustomer->GetArrivalTime() : -1;
+    }
+
+    int GetCurrentCustomerWaitingTime() const
+    {
+        return (currentCustomer != nullptr) ? currentCustomer->GetWaitingTime() : -1;
+    }
+
+    int GetCurrentCustomerTransactionTime() const
+    {
+        return (currentCustomer != nullptr) ? currentCustomer->GetTransactionTime() : -1;
+    }
+
     void DecreaseTransactionTime()
     {
         if (transactionTime > 0)
-            this->transactionTime--;
-    }
-    //assign customer to teller
-    void SetCurrentCustomer(const Customer& customer)
-    {
-        currentCustomer = customer;
+        {
+            transactionTime--;
+        }
     }
 
-    int GetCurrentCustomerNumber()
-    {
-        return currentCustomer.GetCustomerNumber();
-    }
-
-    int GetCurrentCustomerArrivalTime()
-    {
-        return currentCustomer.GetArrivalTime();
-    }
-    //return the Transaction Time of Current Customer
-    int GetCurrentCustomerTransactionTime()
-    {
-        return this->currentCustomer.GetTransactionTime();
-    }
-    int GetRemainingTransactionTime()
-    {
-        return GetCurrentCustomerTransactionTime()-transactionTime;
-    }
-    int GetCurrentCustomerWaitingTime()
-    {
-
-    }
 private:
-    Customer currentCustomer;
-    string status;
+    bool isFree;
     int transactionTime;
+    Customer* currentCustomer;
 };
 
-#endif // TELLER_H
+#endif // Teller_H

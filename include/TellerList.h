@@ -1,98 +1,77 @@
+// TellerList.h
 #ifndef TELLERLIST_H
 #define TELLERLIST_H
-#include <queue>
-using namespace std;
+
+#include "Teller.h"
+#include "Customer.h"
+#include <iostream>
+
 class TellerList
 {
 public:
     TellerList(int numberOfTellers)
     {
         this->numOfTellers = numberOfTellers;
-        // Initialize the queue with default-constructed Teller objects
-        this->tellers = queue<Teller>(deque<Teller>(numberOfTellers));
+        tellers = new Teller[numberOfTellers]; // Dynamically allocate an array of Tellers
     }
 
     int GetFreeTellerNumber()
     {
-        int tellerNum = -1;
-        int i = 0;
-        // Create a copy of the queue
-        queue<Teller> tempQueue = this->tellers;
-        while (!tempQueue.empty())
+        for (int i = 0; i < numOfTellers; ++i)
         {
-            if (tempQueue.front().IsFree())
+            if (tellers[i].IsFree())
             {
-                tellerNum = i;
-                return tellerNum;
+                return i + 1; // Return 1-based index
             }
-            tempQueue.pop();
-            i++;
         }
-        // All tellers are busy
-        return tellerNum;
+        return -1;
     }
 
     int GetNumberOfBusyTellers()
     {
         int busyTellers = 0;
-        // Create a copy of the queue
-        queue<Teller> tempQueue = this->tellers;
-        while (!tempQueue.empty())
+        for (int i = 0; i < numOfTellers; ++i)
         {
-            if (!tempQueue.front().IsFree())
+            if (!tellers[i].IsFree())
             {
                 busyTellers++;
             }
-            tempQueue.pop();
         }
         return busyTellers;
     }
 
-    void SetTellerBusy(int tellerNum, Customer currentCustomer, int transactionTime)
+    void SetTellerBusy(int tellerNum, Customer& currentCustomer, int transactionTime)
     {
-        // Move tellers from the front to the back until the busy one is reached
-        while (tellerNum > 0)
+        if (tellerNum > 0 && tellerNum <= numOfTellers)
         {
-            this->tellers.push(this->tellers.front());
-            this->tellers.pop();
-            tellerNum--;
+            tellers[tellerNum - 1].SetBusy();
+            tellers[tellerNum - 1].SetTransactionTime(transactionTime);
+            tellers[tellerNum - 1].SetCurrentCustomer(currentCustomer);
         }
-
-        // Set the busy teller's properties
-        this->tellers.front().SetBusy();
-        this->tellers.front().SetTransactionTime(transactionTime);
-        this->tellers.front().SetCurrentCustomer(currentCustomer);
-
-        // Move the busy teller to the back
-        this->tellers.push(this->tellers.front());
-        this->tellers.pop();
+    }
+    void SetTellerBusy(int tellerNum, Customer& currentCustomer)
+    {
+        if (tellerNum > 0 && tellerNum <= numOfTellers)
+        {
+            tellers[tellerNum - 1].SetBusy();
+            tellers[tellerNum - 1].SetTransactionTime(currentCustomer.GetTransactionTime());
+            tellers[tellerNum - 1].SetCurrentCustomer(currentCustomer);
+        }
     }
 
-    void SetTellerBusy(int tellerNum, Customer currentCustomer)
+    void SetTellerFree(int tellerNum, Customer& currentCustomer)
     {
-        // Move tellers from the front to the back until the busy one is reached
-        while (tellerNum > 0)
+        if (tellerNum > 0 && tellerNum <= numOfTellers)
         {
-            this->tellers.push(this->tellers.front());
-            this->tellers.pop();
-            tellerNum--;
+            tellers[tellerNum - 1].SetFree();
         }
-
-        // Set the busy teller's properties without specifying transactionTime
-        this->tellers.front().SetBusy();
-        this->tellers.front().SetTransactionTime(currentCustomer.GetTransactionTime());
-        this->tellers.front().SetCurrentCustomer(currentCustomer);
-
-        // Move the busy teller to the back
-        this->tellers.push(this->tellers.front());
-        this->tellers.pop();
     }
 
-    void UpdateTellers(ostream& outF)
+    void UpdateTellers(std::ostream& outF)
     {
-        for (int i = 0; i < this->numOfTellers; i++)
+        for (int i = 0; i < numOfTellers; i++)
         {
-            Teller& currentTeller = this->tellers.front();
+            Teller& currentTeller = tellers[i];
 
             if (!currentTeller.IsFree())
             {
@@ -105,21 +84,22 @@ public:
                          << "\n departed at clock unit " << (currentTeller.GetCurrentCustomerArrivalTime()
                                  + currentTeller.GetCurrentCustomerWaitingTime()
                                  + currentTeller.GetCurrentCustomerTransactionTime())
-                         << endl;
+                         << std::endl;
 
                     currentTeller.SetFree();
                 }
             }
-
-            this->tellers.push(currentTeller);  // Move the processed tellers to the back
-            this->tellers.pop();  // Remove the front teller
         }
     }
 
+    ~TellerList()
+    {
+        delete[] tellers; // Deallocate the dynamically allocated array
+    }
 
 private:
     int numOfTellers;
-    queue<Teller> tellers;
+    Teller* tellers;
 };
 
 #endif // TELLERLIST_H
