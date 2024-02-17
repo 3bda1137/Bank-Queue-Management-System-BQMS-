@@ -58,17 +58,22 @@ public:
     {
         return arr[rear];
     }
+    int GetCurrentSize()
+    {
+        return cont;
+    }
     ~MyQueue()
     {
         delete []arr;
     }
 
+ T * arr;
 private:
     int cont;
     int MaxSize;
     int front;
     int rear;
-    T * arr;
+
 
 };
 

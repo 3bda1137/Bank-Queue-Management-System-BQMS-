@@ -9,6 +9,7 @@ private:
     int arrivalTime;
     int waitingTime;
     int transactionTime;
+    int departureTime;
 public:
     //constructor
     Customer(){}
@@ -36,6 +37,16 @@ public:
     {
         waitingTime++;
     }
+    void SetArrivalTime(int time) {
+        arrivalTime = time;
+    }
+    void SetDepartureTime(int departureTime) {
+        this->departureTime = departureTime;
+    }
+    int GetDepartureTime()
+    {
+        return this->departureTime;
+    }
      // return  the value ofwaitingTime of customer
     void SetWaitingTime(int waitingTime)
     {
@@ -56,6 +67,7 @@ public:
     {
         return this->customerNumber;
     }
+
 };
 
 #endif // CUSTOMER_H

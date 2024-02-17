@@ -1,7 +1,6 @@
 // TellerList.h
 #ifndef TELLERLIST_H
 #define TELLERLIST_H
-
 #include "Teller.h"
 #include "Customer.h"
 #include <iostream>
@@ -79,12 +78,12 @@ public:
 
                 if (currentTeller.GetRemainingTransactionTime() == 0)
                 {
-                    outF << "From Teller number " << (i + 1)
+                   /* outF << "From Teller number " << (i + 1)
                          << " customer number " << currentTeller.GetCurrentCustomerNumber()
                          << "\n departed at clock unit " << (currentTeller.GetCurrentCustomerArrivalTime()
                                  + currentTeller.GetCurrentCustomerWaitingTime()
                                  + currentTeller.GetCurrentCustomerTransactionTime())
-                         << std::endl;
+                         << std::endl;*/
 
                     currentTeller.SetFree();
                 }

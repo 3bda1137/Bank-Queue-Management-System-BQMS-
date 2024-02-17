@@ -5,10 +5,7 @@
 class WaitingCustomerQueue:public MyQueue<Customer>
 {
 public:
-    WaitingCustomerQueue(int size):MyQueue<Customer>(size)
-    {
-
-    }
+    WaitingCustomerQueue(int size):MyQueue<Customer>(size) {}
 
     void UpdateWaitingQueue()
     {
@@ -26,7 +23,23 @@ public:
             Add(cust);
         }
     }
-
+    void SortQueue()
+    {
+        // Bubble sort based on arrival time
+        for (int i = 0; i < this->GetCurrentSize(); ++i)
+        {
+            for (int j = 0; j < this->GetCurrentSize() - 1; ++j)
+            {
+                if (this->arr[j].GetArrivalTime() > this->arr[j + 1].GetArrivalTime())
+                {
+                    // Swap customers
+                    Customer temp = this->arr[j];
+                    this->arr[j] = this->arr[j + 1];
+                    this->arr[j + 1] = temp;
+                }
+            }
+        }
+    }
 protected:
 
 private:

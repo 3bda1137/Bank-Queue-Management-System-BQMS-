@@ -35,8 +35,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Customer.h" />
+		<Unit filename="include/MyQueue.h" />
 		<Unit filename="include/Teller.h" />
 		<Unit filename="include/TellerList.h" />
+		<Unit filename="include/WaitingCustomerQueue.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
