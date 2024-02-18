@@ -1,0 +1,22 @@
+Teller    Customer ID    Arrival Time   Service Time   Waiting Time   Leaving Time   
+1         2              0              3              0              3              
+2         3              1              7              0              8              
+3         4              2              2              0              4              
+1         1              4              5              0              9              
+3         5              5              4              0              9              
+1         10             7              4              1              12             
+2         6              8              6              1              15             
+3         7              10             3              1              14             
+1         9              11             2              2              15             
+3         8              12             5              2              19             
+
+Statistics:
+Number of Tellers: 3
+Average arrival time difference between customers: 1.2
+Total waiting time: 7
+Number of customers that completed a transaction: 10
+Average waiting time: 0.7
+Total Service Time: 41
+Maximum Waiting Time: 2
+Average Service Time: 4.1
+Percentage of Customers Served: 100%
