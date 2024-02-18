@@ -85,8 +85,7 @@ int main()
     // Print statistics
     cout << "\nStatistics:\n";
     cout << "Number of servers: " << 3 << endl;
-    // You can replace "/* Calculate average transaction time */" with the actual calculation
-    cout << "Average transaction time: " << "/* Calculate average transaction time */" << endl;
+
     cout << "Average arrival time difference between customers: " << averageArrivalTimeDifference << endl;
     cout << "Total waiting time: " << totalWaitingTimeAllCustomers << endl;
     cout << "Number of customers that completed a transaction: " << completedTransactions << endl;
