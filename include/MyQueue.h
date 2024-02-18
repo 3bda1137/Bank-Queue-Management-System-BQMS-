@@ -50,7 +50,7 @@ public:
         throw std::runtime_error("Qeue is empty");
     }
 
-    T Front()const
+    T Front()
     {
         return arr[front];
     }

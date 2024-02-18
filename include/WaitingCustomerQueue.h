@@ -1,7 +1,8 @@
 #ifndef WAITINGCUSTOMERQUEUE_H
 #define WAITINGCUSTOMERQUEUE_H
 #include "MyQueue.h"
-
+#include"Customer.h"
+using namespace std;
 class WaitingCustomerQueue:public MyQueue<Customer>
 {
 public:
@@ -9,23 +10,24 @@ public:
 
     void UpdateWaitingQueue()
     {
-        Customer cust;
-        cust.SetWaitingTime(-1);
+        Customer dummyCustomer;
+        dummyCustomer.SetWaitingTime(-1);
         int wTime = 0;
-        Add(cust);
+        Add(dummyCustomer);
         while (wTime !=-1)
         {
-            Delete();
-            wTime = cust.GetWaitingTime();
+            Customer deletedCustomer = Delete();
+            wTime = deletedCustomer.GetWaitingTime();
             if (wTime ==-1)
                 break;
-            cust.IncrementWaitingTime();
-            Add(cust);
+            deletedCustomer.IncrementWaitingTime();
+            Add(deletedCustomer);
         }
+        SortQueue();
     }
+    // Bubble sort based on arrival time
     void SortQueue()
     {
-        // Bubble sort based on arrival time
         for (int i = 0; i < this->GetCurrentSize(); ++i)
         {
             for (int j = 0; j < this->GetCurrentSize() - 1; ++j)
@@ -45,4 +47,4 @@ protected:
 private:
 };
 
-#endif // WAITINGCUSTOMERQUEUE_H
+#endif

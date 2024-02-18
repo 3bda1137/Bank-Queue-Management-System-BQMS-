@@ -7,9 +7,14 @@
 class Teller
 {
 public:
-    Teller() : isFree(true), transactionTime(0), currentCustomer(nullptr) {}
+    Teller()
+    {
+        this->isFree=true;
+        this->currentCustomer=nullptr;
+        this->transactionTime=0;
+    }
 
-    bool IsFree() const
+    bool IsFree()
     {
         return isFree;
     }
@@ -30,36 +35,71 @@ public:
     {
         transactionTime = time;
     }
+    void SetTransactionTime()
+    {
+        if(currentCustomer != nullptr)
+            transactionTime = currentCustomer->GetTransactionTime();
+    }
 
     void SetCurrentCustomer(Customer& customer)
     {
         currentCustomer = &customer;
+        SetTransactionTime();
     }
 
-    int GetRemainingTransactionTime() const
+    int GetRemainingTransactionTime()
     {
-        return transactionTime;
+        return this->transactionTime;
     }
 
-    int GetCurrentCustomerNumber() const
+    int GetCurrentCustomerNumber()
     {
-        return (currentCustomer != nullptr) ? currentCustomer->GetCustomerNumber() : -1;
+        if (currentCustomer != nullptr)
+        {
+            return currentCustomer->GetCustomerNumber();
+        }
+        else
+        {
+            return -1;
+        }
     }
 
-    int GetCurrentCustomerArrivalTime() const
+    int GetCurrentCustomerArrivalTime()
     {
-        return (currentCustomer != nullptr) ? currentCustomer->GetArrivalTime() : -1;
+        if (currentCustomer != nullptr)
+        {
+            return currentCustomer->GetArrivalTime();
+        }
+        else
+        {
+            return -1;
+        }
     }
 
-    int GetCurrentCustomerWaitingTime() const
+    int GetCurrentCustomerWaitingTime()
     {
-        return (currentCustomer != nullptr) ? currentCustomer->GetWaitingTime() : -1;
+        if (currentCustomer != nullptr)
+        {
+            return currentCustomer->GetWaitingTime();
+        }
+        else
+        {
+            return -1;
+        }
     }
 
-    int GetCurrentCustomerTransactionTime() const
+    int GetCurrentCustomerTransactionTime()
     {
-        return (currentCustomer != nullptr) ? currentCustomer->GetTransactionTime() : -1;
+        if (currentCustomer != nullptr)
+        {
+            return currentCustomer->GetTransactionTime();
+        }
+        else
+        {
+            return -1;
+        }
     }
+
 
     void DecreaseTransactionTime()
     {
@@ -68,11 +108,20 @@ public:
             transactionTime--;
         }
     }
+    void SetLevingTime()
+    {
+     levingTime=currentCustomer->GetDepartureTime();
+    }
+    int GetLevingTime()
+    {
+        return levingTime;
+    }
 
 private:
     bool isFree;
     int transactionTime;
     Customer* currentCustomer;
+    int levingTime;
 };
 
-#endif // Teller_H
+#endif

@@ -4,7 +4,7 @@
 #include "Teller.h"
 #include "Customer.h"
 #include <iostream>
-
+using namespace std;
 class TellerList
 {
 public:
@@ -12,6 +12,7 @@ public:
     {
         this->numOfTellers = numberOfTellers;
         tellers = new Teller[numberOfTellers]; // Dynamically allocate an array of Tellers
+
     }
 
     int GetFreeTellerNumber()
@@ -20,7 +21,7 @@ public:
         {
             if (tellers[i].IsFree())
             {
-                return i + 1; // Return 1-based index
+                return i + 1;
             }
         }
         return -1;
@@ -66,7 +67,8 @@ public:
         }
     }
 
-    void UpdateTellers(std::ostream& outF)
+
+    void UpdateTellers()
     {
         for (int i = 0; i < numOfTellers; i++)
         {
@@ -75,25 +77,24 @@ public:
             if (!currentTeller.IsFree())
             {
                 currentTeller.DecreaseTransactionTime();
+                //cout<<"Teller: "<<i+1<<"\tRemaining Time: "<<currentTeller.GetRemainingTransactionTime()<<endl;
 
                 if (currentTeller.GetRemainingTransactionTime() == 0)
                 {
-                   /* outF << "From Teller number " << (i + 1)
-                         << " customer number " << currentTeller.GetCurrentCustomerNumber()
-                         << "\n departed at clock unit " << (currentTeller.GetCurrentCustomerArrivalTime()
-                                 + currentTeller.GetCurrentCustomerWaitingTime()
-                                 + currentTeller.GetCurrentCustomerTransactionTime())
-                         << std::endl;*/
-
                     currentTeller.SetFree();
                 }
             }
         }
     }
 
+    Teller GetTeller(int i)
+    {
+        return tellers[i];
+    }
+
     ~TellerList()
     {
-        delete[] tellers; // Deallocate the dynamically allocated array
+        delete[] tellers;
     }
 
 private:

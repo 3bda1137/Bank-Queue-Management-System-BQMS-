@@ -31,7 +31,6 @@ public:
     {
         return waitingTime;
     }
-
     // return  the value ofwaitingTime of customer
     void IncrementWaitingTime()
     {
@@ -40,14 +39,19 @@ public:
     void SetArrivalTime(int time) {
         arrivalTime = time;
     }
-    void SetDepartureTime(int departureTime) {
+    void SetDepartureTime(int departureTime)
+    {
         this->departureTime = departureTime;
+    }
+    void SetDepartureTime()
+    {
+        this->departureTime =GetArrivalTime()+GetTransactionTime()+ GetWaitingTime();
     }
     int GetDepartureTime()
     {
         return this->departureTime;
     }
-     // return  the value ofwaitingTime of customer
+
     void SetWaitingTime(int waitingTime)
     {
         this->waitingTime=waitingTime;
