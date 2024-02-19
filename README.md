@@ -22,7 +22,7 @@ Utilize either an Array or a Linked List to manage tellers, marking their status
 
 Manage teller availability dynamically, updating it as customers are served.
 
-### 4-Priority Queue Option:
+### 4-Priority Queue:
 
 * Optionally, implement a priority queue to expedite service for specific customers (e.g., special needs, elderly, premium account holders).
 
@@ -47,11 +47,11 @@ Calculate and display key metrics:
 
 * Handles the representation of multiple tellers, tracking their availability status.
 
-### 3-Priority Queue (Optional):
+### 3-Priority Queue:
 
 * Manages the priority customers, facilitating quicker service.
 
-## Advanced Features (Optional)
+## Advanced Features 
 
 ### Dynamic Teller Allocation:
 
