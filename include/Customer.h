@@ -9,7 +9,7 @@ private:
     int arrivalTime;
     int waitingTime;
     int transactionTime;
-    int departureTime;
+    int departureTime;//leaving time
 public:
     //constructor
     Customer(){}

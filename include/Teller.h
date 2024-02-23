@@ -118,8 +118,8 @@ public:
     }
 
 private:
-    bool isFree;
-    int transactionTime;
+    bool isFree;//false or true
+    int transactionTime;// transaction Time of customer
     Customer* currentCustomer;
     int levingTime;
 };
